@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	cli "github.com/Fatake/P-lang/Cli"
-	lex "github.com/Fatake/P-lang/Lex"
-	util "github.com/Fatake/P-lang/Utilities"
+	cli "github.com/Fatake/P-lang/cli"
+	lex "github.com/Fatake/P-lang/lex"
+	util "github.com/Fatake/P-lang/utilities"
 )
 
 func main() {
@@ -22,6 +22,10 @@ func main() {
 		os.Exit(1)
 	}
 
-	lex.AnalizeLex(fileLines)
+	_, err = lex.AnalizeLex(fileLines, true)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
 }
