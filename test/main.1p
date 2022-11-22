@@ -17,6 +17,4 @@ def Main(){
     } sino {
         Imprime("Uno es menor a 2");
     }
-    
-
 }

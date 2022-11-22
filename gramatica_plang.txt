@@ -1,0 +1,15 @@
+numeroEntero        [0-9]+
+letra               [a-z]+|[A-Z]+|"_"
+operadorLogico      "<"|">"|"<="|">="|"=="
+operador            "+"|"-"|"*"|"/"
+identificador       {letra}+|{letra}+{numeroEntero}+
+sentencia           {identificador}{operador}{numeroEntero}" ;"
+expresionRelacion   {identificador}{operadorLogico}{numeroEntero}
+declaVarEntero      "var "{identificador}" = "{numeroEntero}" ;"
+declaVarCaract      "var "{identificador}" = "{letra}" ;"
+instrucIf           "si"" ("{expresionRelacion}") ""{"{sentencia}"}"
+instrucIfElse       "si"" ("{expresionRelacion}") ""{"{sentencia}"}""sino""{"{sentencia}"}"
+instruFor           "para"" ("{declaVarEntero}","{identificador}") ""en"" ("{identificador}|{expresionRelacion}") ""{"{sentencia}"}"
+importa             "importa"" "{identificador}
+modulo              "modulo"" "{identificador}
+funcion             "define"" "{identificador}" ""{"{sentencia}"}"
