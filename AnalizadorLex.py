@@ -39,7 +39,7 @@ tokens = [
     'LBRACKET', # [
     'RBRACKET', # ]
     'COMA', # ,
-    'ENDLINE', # ;
+    'ENDSENTENCE', # ;
     'CHARACTER', # a
     'CARACTERES' # asdAd
 ] + list(reserved.values())
@@ -73,7 +73,7 @@ t_RBRACKET         = r'\]'
 t_LCORCHE          = r'\{'
 t_RCORCHE          = r'\}'
 t_COMA             = r','
-t_ENDLINE          = r';'
+t_ENDSENTENCE          = r';'
 
 # Enteros
 t_NUMERO = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
@@ -83,6 +83,10 @@ t_CARACTERES = r'\"([^\\\n]|(\\.))*?\"'
 
 # Character constant 'c' or L'c'
 t_CHARACTER = r'(L)?\'([^\\\n]|(\\.))*?\''
+
+def t_SPACE(t):
+    r'\ '
+    pass
 
 # Comentario  en linea // comentario
 def t_COMMENTINLINE(t):
@@ -119,8 +123,6 @@ def analiza(cadena):
         print(tok)
     return True
 
-
-
 def main(file):
     print("<-------------------------->")
     print(f"[i] Tokens del lenguaje \n{tokens}")
@@ -136,11 +138,9 @@ def main(file):
     
     analiza(cadena)
 
-    
-
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("[!] uso ./analizadorLex.py file")
+        print("[!] uso ./AnalizadorLex.py file")
         sys.exit(1)
 
     main(sys.argv[1])

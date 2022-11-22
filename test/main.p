@@ -4,7 +4,6 @@ importa pantalla
 importa lib2
 
 def Main(){
-
     Imprime("Hola Mundo en P-Lang")
     para (i, c) en (argv) {
         Imprime("[${1}] Palabra -> ${2}",i,c)
