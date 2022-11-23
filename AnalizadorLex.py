@@ -1,11 +1,12 @@
-import sys
 import ply.lex as lex
+import sys
 import re
 import codecs
 import os
 
 # Diccionario de palabras reservadas
 reserved = {
+    'Main':'PMAIN',
     'entero':'ENTERO',
     'var':'VAR',
     'si':'SI',
@@ -108,20 +109,26 @@ def t_error(t):
     t.lexer.skip(1)
 
 def readFile(file):
+    if not os.path.exists(file):
+        print("[!] No se encontro archivo")
+        sys.exit(1)
+
     fp = codecs.open(file,"r","utf-8")
     cadena = fp.read()
     fp.close()
     return cadena
 
-def analiza(cadena):
+def analisisLex(cadena):
     analizador = lex.lex()
     analizador.input(cadena)
+    tokensAnalizados = []
     while True:
         tok = analizador.token()
         if not tok : 
             break
         print(tok)
-    return True
+        tokensAnalizados.append(tok)
+    return tokensAnalizados
 
 def main(file):
     print("<-------------------------->")
@@ -130,13 +137,8 @@ def main(file):
 
     print(f"\n[i] analizando: {file}")
 
-    if not os.path.exists(file):
-        print("[!] No se encontro archivo")
-        sys.exit(1)
-
     cadena = readFile(file)
-    
-    analiza(cadena)
+    analisisLex(cadena)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

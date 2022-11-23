@@ -1,12 +1,11 @@
-modulo pricipal
+modulo pricipal;
 
-importa pantalla
-importa lib2
+importa pantalla; // Puede o no estar
+importa lib2; // Puede o no estar
 
-def Main(){
-    Imprime("Hola Mundo en P-Lang")
+define Main(){
     para (i, c) en (argv) {
-        Imprime("[${1}] Palabra -> ${2}",i,c)
+        Imprime("[${1}] Palabra -> ${2}",i,c);
     }
 
     si (1 > 2) {
