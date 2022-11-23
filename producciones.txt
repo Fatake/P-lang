@@ -1,0 +1,20 @@
+program : MODULO ID librerias DEFINE Main() { instrucciones }
+librerias : IMPORTA ID | e
+instrucciones : declaraciones 
+instrucciones : ciclos 
+instrucciones : condicionales 
+instrucciones : expresiones; 
+instrucciones : instrucciones | e
+declaraciones : VAR ID ; 
+declaraciones : VAR ID = expresiones;
+condicionales : SI (expresiones) {instrucciones} sinocondicion
+sinocondicion : SINO {instrucciones} | e
+ciclos : PARA (ID,ID) EN (condicionfor) { instrucciones }
+condicionfor : ID 
+condicionfor : expresiones
+expresiones : expresiones SUMA termino 
+expresiones : termino
+termino : termino MUTIPLICA factor 
+termino : factor
+factor : LPARENT expresiones RPARENT
+empty :

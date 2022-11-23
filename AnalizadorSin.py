@@ -19,65 +19,111 @@ precendece = (
 
 ## Analisis de producciones
 ## p -> producction
-'''
-def p_program(p):
-    program = block
-    p[0] = program(p[1], "program")
 
-def p_constDecl(p):
-    constDecl = const constAssignmentList ; '''
+def p_program(p):
+    'program : MODULO ID ENDSENTENCE librerias DEFINE PMAIN LPARENT RPARENT LCORCHE instrucciones RCORCHE'
     
-def p_constDeclEmpy(p):
-    'constDecl :'
-    pass
+def p_librerias(p):
+    'librerias : IMPORTA ID ENDSENTENCE librerias'
+
+def p_librerias_emp(p):
+    'librerias : empty'
+    
+def p_instrucciones_dec(p):
+    'instrucciones : declaraciones '
+    
+def p_instrucciones_cic(p):
+    'instrucciones : ciclos '
+    
+def p_instrucciones_con(p):
+    'instrucciones : condicionales '
+    
+def p_instrucciones_exp(p):
+    'instrucciones : expresiones ENDSENTENCE'
+    
+def p_instrucciones_ins(p):
+    'instrucciones : instrucciones'
+
+def p_instrucciones_emp(p):
+    'instrucciones : empty'
+ 
+def p_declaraciones(p):
+    'declaraciones : VAR ID ENDSENTENCE'
+    
+def p_declaraciones_exp(p):
+    'declaraciones : VAR ID ASIGNA expresiones ENDSENTENCE'
+    
+def p_condicionales(p):
+    'condicionales : SI LPARENT expresiones RPARENT LCORCHE instrucciones RCORCHE sinocondicion'
+    
+def p_sinocondicion(p):
+    'sinocondicion : SINO LCORCHE instrucciones RCORCHE'
+
+def p_sinocondicion_emp(p):
+    'sinocondicion : empty'
+
+def p_ciclos(p):
+    'ciclos : PARA LPARENT ID COMA ID RPARENT EN LPARENT condicionfor RPARENT LCORCHE instrucciones RCORCHE'
+    
+def p_condicionfor_ID(p):
+    'condicionfor : ID '
+
+def p_condicionfor_exp(p):
+    'condicionfor : expresiones '
 
 def p_expression_plus(p):
-    'expression : expression SUMA term'
+    'expresiones : expresiones SUMA terminos'
     p[0] = p[1] + p[3]
 
+def p_expression_equal(p):
+    'expresiones : expresiones IGUALDAD terminos'
+    p[0] = p[1] 
+
 def p_expression_minus(p):
-    'expression : expression RESTA term'
+    'expresiones : expresiones RESTA terminos'
     p[0] = p[1] - p[3]
 
 def p_expression_term(p):
-    'expression : term'
+    'expresiones : terminos'
     p[0] = p[1]
 
 def p_term_times(p):
-    'term : term MUTIPLICA factor'
+    'terminos : terminos MUTIPLICA factor'
     p[0] = p[1] * p[3]
 
 def p_term_div(p):
-    'term : term DIVIDE factor'
+    'terminos : terminos DIVIDE factor'
     p[0] = p[1] / p[3]
 
 def p_term_factor(p):
-    'term : factor'
+    'terminos : factor'
     p[0] = p[1]
 
 def p_factor_num(p):
     'factor : NUMERO'
     p[0] = p[1]
 
+def p_factor_ID(p):
+    'factor : ID'
+    p[0] = p[1]
+
 def p_factor_expr(p):
-    'factor : LPARENT expression RPARENT'
+    'factor : LPARENT expresiones RPARENT'
     p[0] = p[2]
+    
+def p_empy(p):
+    'empty :'
+    pass
 
 # Error rule for syntax errors
 def p_error(p):
-    print("Syntax error in input!")
+    print(f"[!] Syntax error in line: {str(p.lineno)}")
 
-def analizadorSin(tokensAnalizados):
+def analizadorSin(cadena):
     # Build the parser
     parser = yacc.yacc()
     while True:
-        try:
-            s = input('calc > ')
-        except EOFError:
-            break
-        if not s: 
-            continue
-        result = parser.parse(s)
+        result = parser.parse(cadena)
         print(result)
 
 def main():
@@ -87,7 +133,7 @@ def main():
 
     cadena = readFile(sys.argv[1])
     tokensAnalizados = analisisLex(cadena)
-    analizadorSin(tokensAnalizados)
+    analizadorSin(cadena)
 
 if __name__ == "__main__":
     main()

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ASIGNA CARACTERES CHARACTER COMA DEFINE DIFERENCIA DIVIDE EN ENDSENTENCE ENTERO ID IGUALDAD IMPORTA LBRACKET LCORCHE LPARENT MAYOIGUA MAYORQUE MENOIGUAL MENORQUE MODULO MUTIPLICA NUMERO PARA RBRACKET RCORCHE RESTA RETORNA RPARENT SI SINO SUMA VARconstDecl :expression : expression SUMA termexpression : expression RESTA termexpression : termterm : term MUTIPLICA factorterm : term DIVIDE factorterm : factorfactor : NUMEROfactor : LPARENT expression RPARENT'
+_lr_signature = 'ASIGNA CARACTERES CHARACTER COMA DEFINE DIFERENCIA DIVIDE EN ENDSENTENCE ENTERO ID IGUALDAD IMPORTA LBRACKET LCORCHE LPARENT MAYOIGUA MAYORQUE MENOIGUAL MENORQUE MODULO MUTIPLICA NUMERO PARA PMAIN RBRACKET RCORCHE RESTA RETORNA RPARENT SI SINO SUMA VARprogram : MODULO ID ENDSENTENCE librerias DEFINE PMAIN LPARENT RPARENT LCORCHE instrucciones RCORCHElibrerias : IMPORTA ID ENDSENTENCE libreriaslibrerias : emptyinstrucciones : declaraciones instrucciones : ciclos instrucciones : condicionales instrucciones : expresiones ENDSENTENCEinstrucciones : instruccionesinstrucciones : emptydeclaraciones : VAR ID ENDSENTENCEdeclaraciones : VAR ID ASIGNA expresiones ENDSENTENCEcondicionales : SI LPARENT expresiones RPARENT LCORCHE instrucciones RCORCHE sinocondicionsinocondicion : SINO LCORCHE instrucciones RCORCHEsinocondicion : emptyciclos : PARA LPARENT ID COMA ID RPARENT EN LPARENT condicionfor RPARENT LCORCHE instrucciones RCORCHEcondicionfor : ID condicionfor : expresiones expresiones : expresiones SUMA terminosexpresiones : expresiones IGUALDAD terminosexpresiones : expresiones RESTA terminosexpresiones : terminosterminos : terminos MUTIPLICA factorterminos : terminos DIVIDE factorterminos : factorfactor : NUMEROfactor : IDfactor : LPARENT expresiones RPARENTempty :'
     
-_lr_action_items = {'$end':([0,1,],[-1,0,]),}
+_lr_action_items = {'MODULO':([0,],[2,]),'$end':([1,31,],[0,-1,]),'ID':([2,6,15,17,24,33,34,35,37,38,39,40,46,52,56,61,68,71,],[3,9,16,16,36,16,16,16,47,16,16,16,16,55,16,65,16,16,]),'ENDSENTENCE':([3,9,16,22,27,28,29,36,41,42,43,44,49,50,51,],[4,11,-26,32,-21,-24,-25,45,-27,-18,-19,-20,-22,-23,54,]),'IMPORTA':([4,11,],[6,6,]),'DEFINE':([4,5,7,11,13,],[-28,8,-3,-28,-2,]),'PMAIN':([8,],[10,]),'LPARENT':([10,15,17,25,26,33,34,35,38,39,40,46,56,59,61,68,71,],[12,17,17,37,38,17,17,17,17,17,17,17,17,61,17,17,17,]),'RPARENT':([12,16,27,28,29,30,41,42,43,44,48,49,50,55,65,66,67,],[14,-26,-21,-24,-25,41,-27,-18,-19,-20,53,-22,-23,57,-16,69,-17,]),'LCORCHE':([14,53,63,69,],[15,56,68,71,]),'VAR':([15,56,68,71,],[24,24,24,24,]),'PARA':([15,56,68,71,],[25,25,25,25,]),'SI':([15,56,68,71,],[26,26,26,26,]),'RCORCHE':([15,18,19,20,21,23,32,45,54,56,58,60,62,64,68,70,71,72,73,74,],[-28,31,-4,-5,-6,-9,-7,-10,-11,-28,60,-28,-12,-14,-28,72,-28,-13,74,-15,]),'NUMERO':([15,17,33,34,35,38,39,40,46,56,61,68,71,],[29,29,29,29,29,29,29,29,29,29,29,29,29,]),'MUTIPLICA':([16,27,28,29,41,42,43,44,49,50,65,],[-26,39,-24,-25,-27,39,39,39,-22,-23,-26,]),'DIVIDE':([16,27,28,29,41,42,43,44,49,50,65,],[-26,40,-24,-25,-27,40,40,40,-22,-23,-26,]),'SUMA':([16,22,27,28,29,30,41,42,43,44,48,49,50,51,65,67,],[-26,33,-21,-24,-25,33,-27,-18,-19,-20,33,-22,-23,33,-26,33,]),'IGUALDAD':([16,22,27,28,29,30,41,42,43,44,48,49,50,51,65,67,],[-26,34,-21,-24,-25,34,-27,-18,-19,-20,34,-22,-23,34,-26,34,]),'RESTA':([16,22,27,28,29,30,41,42,43,44,48,49,50,51,65,67,],[-26,35,-21,-24,-25,35,-27,-18,-19,-20,35,-22,-23,35,-26,35,]),'ASIGNA':([36,],[46,]),'COMA':([47,],[52,]),'EN':([57,],[59,]),'SINO':([60,],[63,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'constDecl':([0,],[1,]),}
+_lr_goto_items = {'program':([0,],[1,]),'librerias':([4,11,],[5,13,]),'empty':([4,11,15,56,60,68,71,],[7,7,23,23,64,23,23,]),'instrucciones':([15,56,68,71,],[18,58,70,73,]),'declaraciones':([15,56,68,71,],[19,19,19,19,]),'ciclos':([15,56,68,71,],[20,20,20,20,]),'condicionales':([15,56,68,71,],[21,21,21,21,]),'expresiones':([15,17,38,46,56,61,68,71,],[22,30,48,51,22,67,22,22,]),'terminos':([15,17,33,34,35,38,46,56,61,68,71,],[27,27,42,43,44,27,27,27,27,27,27,]),'factor':([15,17,33,34,35,38,39,40,46,56,61,68,71,],[28,28,28,28,28,28,49,50,28,28,28,28,28,]),'sinocondicion':([60,],[62,]),'condicionfor':([61,],[66,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,14 +26,33 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> constDecl","S'",1,None,None,None),
-  ('constDecl -> <empty>','constDecl',0,'p_constDeclEmpy','AnalizadorSin.py',29),
-  ('expression -> expression SUMA term','expression',3,'p_expression_plus','AnalizadorSin.py',33),
-  ('expression -> expression RESTA term','expression',3,'p_expression_minus','AnalizadorSin.py',37),
-  ('expression -> term','expression',1,'p_expression_term','AnalizadorSin.py',41),
-  ('term -> term MUTIPLICA factor','term',3,'p_term_times','AnalizadorSin.py',45),
-  ('term -> term DIVIDE factor','term',3,'p_term_div','AnalizadorSin.py',49),
-  ('term -> factor','term',1,'p_term_factor','AnalizadorSin.py',53),
-  ('factor -> NUMERO','factor',1,'p_factor_num','AnalizadorSin.py',57),
-  ('factor -> LPARENT expression RPARENT','factor',3,'p_factor_expr','AnalizadorSin.py',61),
+  ("S' -> program","S'",1,None,None,None),
+  ('program -> MODULO ID ENDSENTENCE librerias DEFINE PMAIN LPARENT RPARENT LCORCHE instrucciones RCORCHE','program',11,'p_program','AnalizadorSin.py',24),
+  ('librerias -> IMPORTA ID ENDSENTENCE librerias','librerias',4,'p_librerias','AnalizadorSin.py',27),
+  ('librerias -> empty','librerias',1,'p_librerias_emp','AnalizadorSin.py',30),
+  ('instrucciones -> declaraciones','instrucciones',1,'p_instrucciones_dec','AnalizadorSin.py',33),
+  ('instrucciones -> ciclos','instrucciones',1,'p_instrucciones_cic','AnalizadorSin.py',36),
+  ('instrucciones -> condicionales','instrucciones',1,'p_instrucciones_con','AnalizadorSin.py',39),
+  ('instrucciones -> expresiones ENDSENTENCE','instrucciones',2,'p_instrucciones_exp','AnalizadorSin.py',42),
+  ('instrucciones -> instrucciones','instrucciones',1,'p_instrucciones_ins','AnalizadorSin.py',45),
+  ('instrucciones -> empty','instrucciones',1,'p_instrucciones_emp','AnalizadorSin.py',48),
+  ('declaraciones -> VAR ID ENDSENTENCE','declaraciones',3,'p_declaraciones','AnalizadorSin.py',51),
+  ('declaraciones -> VAR ID ASIGNA expresiones ENDSENTENCE','declaraciones',5,'p_declaraciones_exp','AnalizadorSin.py',54),
+  ('condicionales -> SI LPARENT expresiones RPARENT LCORCHE instrucciones RCORCHE sinocondicion','condicionales',8,'p_condicionales','AnalizadorSin.py',57),
+  ('sinocondicion -> SINO LCORCHE instrucciones RCORCHE','sinocondicion',4,'p_sinocondicion','AnalizadorSin.py',60),
+  ('sinocondicion -> empty','sinocondicion',1,'p_sinocondicion_emp','AnalizadorSin.py',63),
+  ('ciclos -> PARA LPARENT ID COMA ID RPARENT EN LPARENT condicionfor RPARENT LCORCHE instrucciones RCORCHE','ciclos',13,'p_ciclos','AnalizadorSin.py',66),
+  ('condicionfor -> ID','condicionfor',1,'p_condicionfor_ID','AnalizadorSin.py',69),
+  ('condicionfor -> expresiones','condicionfor',1,'p_condicionfor_exp','AnalizadorSin.py',72),
+  ('expresiones -> expresiones SUMA terminos','expresiones',3,'p_expression_plus','AnalizadorSin.py',75),
+  ('expresiones -> expresiones IGUALDAD terminos','expresiones',3,'p_expression_equal','AnalizadorSin.py',79),
+  ('expresiones -> expresiones RESTA terminos','expresiones',3,'p_expression_minus','AnalizadorSin.py',83),
+  ('expresiones -> terminos','expresiones',1,'p_expression_term','AnalizadorSin.py',87),
+  ('terminos -> terminos MUTIPLICA factor','terminos',3,'p_term_times','AnalizadorSin.py',91),
+  ('terminos -> terminos DIVIDE factor','terminos',3,'p_term_div','AnalizadorSin.py',95),
+  ('terminos -> factor','terminos',1,'p_term_factor','AnalizadorSin.py',99),
+  ('factor -> NUMERO','factor',1,'p_factor_num','AnalizadorSin.py',103),
+  ('factor -> ID','factor',1,'p_factor_ID','AnalizadorSin.py',107),
+  ('factor -> LPARENT expresiones RPARENT','factor',3,'p_factor_expr','AnalizadorSin.py',111),
+  ('empty -> <empty>','empty',0,'p_empy','AnalizadorSin.py',115),
 ]
