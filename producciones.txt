@@ -1,14 +1,14 @@
 program : MODULO ID librerias DEFINE Main() { instrucciones }
-librerias : IMPORTA ID | e
+librerias : IMPORTA ID | empty
 instrucciones : declaraciones 
 instrucciones : ciclos 
 instrucciones : condicionales 
 instrucciones : expresiones; 
-instrucciones : instrucciones | e
+instrucciones : instrucciones | empty
 declaraciones : VAR ID ; 
 declaraciones : VAR ID = expresiones;
 condicionales : SI (expresiones) {instrucciones} sinocondicion
-sinocondicion : SINO {instrucciones} | e
+sinocondicion : SINO {instrucciones} | empty
 ciclos : PARA (ID,ID) EN (condicionfor) { instrucciones }
 condicionfor : ID 
 condicionfor : expresiones

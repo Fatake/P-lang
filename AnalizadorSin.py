@@ -121,10 +121,10 @@ def p_error(p):
 
 def analizadorSin(cadena):
     # Build the parser
-    parser = yacc.yacc()
-    while True:
-        result = parser.parse(cadena)
-        print(result)
+    parser = yacc.yacc('SLR')
+
+    result = parser.parse(cadena)
+    print(result)
 
 def main():
     if len(sys.argv) != 2:
