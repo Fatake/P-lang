@@ -128,7 +128,7 @@ def analisisLex(cadena):
             break
         print(tok)
         tokensAnalizados.append(tok)
-    return tokensAnalizados
+    return analizador, tokensAnalizados
 
 def main(file):
     print("<-------------------------->")

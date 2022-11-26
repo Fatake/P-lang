@@ -1,5 +1,8 @@
-program : MODULO ID librerias DEFINE Main() { instrucciones }
-librerias : IMPORTA ID | empty
+program : modulo librerias funcionmain
+modulo : MODULO ID ENDSENTENCE
+librerias : IMPORTA ID ENDSENTENCE librerias
+librerias : empty
+funcionmain : DEFINE Main() { instrucciones }
 instrucciones : declaraciones 
 instrucciones : ciclos 
 instrucciones : condicionales 
@@ -15,6 +18,13 @@ condicionfor : expresiones
 expresiones : expresiones SUMA termino 
 expresiones : termino
 termino : termino MUTIPLICA factor 
+termino : termino DIVIDE factor 
 termino : factor
-factor : LPARENT expresiones RPARENT
+factor : nummero
+factor : ID
+factor : (expresiones) 
 empty :
+
+
+
+

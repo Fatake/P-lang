@@ -19,10 +19,18 @@ precendece = (
 
 ## Analisis de producciones
 ## p -> producction
-
 def p_program(p):
-    'program : MODULO ID ENDSENTENCE librerias DEFINE PMAIN LPARENT RPARENT LCORCHE instrucciones RCORCHE'
-    
+    'program : modulo librerias funcionmain'
+    print(f"Inico Programa")
+
+def p_modulo(p):
+    'modulo : MODULO ID ENDSENTENCE'
+    print(f"modulo -> {p.parser} lex {p.lexer}")
+    p[0] = ('module-name',p[2])
+
+def p_funcionmain(p):
+    'funcionmain : DEFINE PMAIN LPARENT RPARENT LCORCHE instrucciones RCORCHE'
+
 def p_librerias(p):
     'librerias : IMPORTA ID ENDSENTENCE librerias'
 
@@ -65,9 +73,6 @@ def p_sinocondicion_emp(p):
 def p_ciclos(p):
     'ciclos : PARA LPARENT ID COMA ID RPARENT EN LPARENT condicionfor RPARENT LCORCHE instrucciones RCORCHE'
     
-def p_condicionfor_ID(p):
-    'condicionfor : ID '
-
 def p_condicionfor_exp(p):
     'condicionfor : expresiones '
 
@@ -109,7 +114,7 @@ def p_factor_ID(p):
 
 def p_factor_expr(p):
     'factor : LPARENT expresiones RPARENT'
-    p[0] = p[2]
+    p[0] = ('group-expression',p[2])
     
 def p_empy(p):
     'empty :'
@@ -119,11 +124,10 @@ def p_empy(p):
 def p_error(p):
     print(f"[!] Syntax error in line: {str(p.lineno)}")
 
-def analizadorSin(cadena):
+def analizadorSin(cadena, lexer):
     # Build the parser
-    parser = yacc.yacc('SLR')
-
-    result = parser.parse(cadena)
+    parser = yacc.yacc()
+    result = parser.parse(cadena,tracking=True,lexer=lexer)
     print(result)
 
 def main():
@@ -132,8 +136,10 @@ def main():
         sys.exit(1)
 
     cadena = readFile(sys.argv[1])
-    tokensAnalizados = analisisLex(cadena)
-    analizadorSin(cadena)
+    print("[+] Analisis lexico")
+    lexer, _ = analisisLex(cadena)
+    print("\n[+] Analisis Sintactico")
+    analizadorSin(cadena, lexer)
 
 if __name__ == "__main__":
     main()
